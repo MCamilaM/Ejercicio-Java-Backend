@@ -1,4 +1,4 @@
-package com.sofka.ejercicio.usecases;
+package com.sofka.ejercicio.usecases.paisusecase;
 
 import com.sofka.ejercicio.mappers.MapperPais;
 import com.sofka.ejercicio.models.PaisDTO;
@@ -8,27 +8,30 @@ import com.sofka.ejercicio.service.SequenceGeneratorService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
-
-import java.util.Objects;
+import static com.sofka.ejercicio.collections.Pais.ID_SEQUENCE_PAIS;
 
 @Service
 @Validated
-public class ActualizarPaisUseCase implements GuardarPais {
+public class CrearPaisUseCase implements GuardarPais {
 
     private final PaisRepository paisRepository;
     private final MapperPais mapperPais;
+    private final SequenceGeneratorService service;
 
-    public ActualizarPaisUseCase(PaisRepository paisRepository, MapperPais mapperPais) {
+    public CrearPaisUseCase(PaisRepository paisRepository, MapperPais mapperPais, SequenceGeneratorService service) {
         this.paisRepository = paisRepository;
         this.mapperPais = mapperPais;
+        this.service = service;
     }
+
 
     @Override
     public Mono<PaisDTO> apply(PaisDTO paisDTO) {
-        Objects.requireNonNull(paisDTO.getId(), "El id del pais es requerido");
-        return paisRepository
-                .save(mapperPais.paisDTOAPais()
-                        .apply(paisDTO))
-                .thenReturn(paisDTO);
+        return service.getSequenceNumber(ID_SEQUENCE_PAIS).flatMap(id -> {
+            paisDTO.setId(id.intValue());
+            return paisRepository
+                    .save(mapperPais.paisDTOAPais().apply(paisDTO))
+                    .thenReturn(paisDTO);
+        });
     }
 }
