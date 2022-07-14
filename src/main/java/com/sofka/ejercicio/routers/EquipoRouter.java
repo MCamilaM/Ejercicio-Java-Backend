@@ -1,10 +1,10 @@
 package com.sofka.ejercicio.routers;
 
-import com.sofka.ejercicio.models.PaisDTO;
-import com.sofka.ejercicio.usecases.paisusecase.ActualizarPaisUseCase;
-import com.sofka.ejercicio.usecases.paisusecase.CrearPaisUseCase;
-import com.sofka.ejercicio.usecases.paisusecase.EliminarPaisPorIdUseCase;
-import com.sofka.ejercicio.usecases.paisusecase.ObtenerPaisesUseCase;
+import com.sofka.ejercicio.models.EquipoDTO;
+import com.sofka.ejercicio.usecases.equipousecase.ActualizarEquipoUseCase;
+import com.sofka.ejercicio.usecases.equipousecase.CrearEquipoUseCase;
+import com.sofka.ejercicio.usecases.equipousecase.EliminarEquipoPorIdUseCase;
+import com.sofka.ejercicio.usecases.equipousecase.ObtenerEquiposUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -21,50 +21,48 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 @RestController
 @Configuration
-public class PaisRouter {
+public class EquipoRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> crearPais(CrearPaisUseCase useCase){
-        Function<PaisDTO, Mono<ServerResponse>> executor = paisDTO -> useCase.apply(paisDTO)
+    public RouterFunction<ServerResponse> crearEquipo(CrearEquipoUseCase useCase){
+        Function<EquipoDTO, Mono<ServerResponse>> executor = equipoDTO -> useCase.apply(equipoDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(result));
 
         return route(
-                POST("/crearpais").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(PaisDTO.class).flatMap(executor)
+                POST("/crearequipo").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(EquipoDTO.class).flatMap(executor)
         );
     }
 
     @Bean
-    public RouterFunction<ServerResponse> actualizarPais(ActualizarPaisUseCase useCase){
-        Function<PaisDTO, Mono<ServerResponse>> executor = paisDTO -> useCase.apply(paisDTO)
+    public RouterFunction<ServerResponse> actualizarEquipo(ActualizarEquipoUseCase useCase){
+        Function<EquipoDTO, Mono<ServerResponse>> executor = equipoDTO -> useCase.apply(equipoDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(result));
 
         return route(
-                PUT("/actualizarpais/{id}").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(PaisDTO.class).flatMap(executor)
+                PUT("/actualizarequipo/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(EquipoDTO.class).flatMap(executor)
         );
     }
-
     @Bean
-    public RouterFunction<ServerResponse> eliminarPaisPorId(EliminarPaisPorIdUseCase useCase){
+    public RouterFunction<ServerResponse> eliminarEquipoPorId(EliminarEquipoPorIdUseCase useCase){
         return route(
-                DELETE("/eliminarpais/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                DELETE("/eliminarequipo/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.accepted()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), void.class))
         );
     }
-
     @Bean
-    public RouterFunction<ServerResponse> ObtenerPaises(ObtenerPaisesUseCase useCase){
-        return route(GET("/obtenerpaises").and(accept(MediaType.APPLICATION_JSON)),
+    public RouterFunction<ServerResponse> obtenerEquipos(ObtenerEquiposUseCase useCase){
+        return route(GET("/obtenerequipos").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(useCase.get(), PaisDTO.class))
+                        .body(BodyInserters.fromPublisher(useCase.get(), EquipoDTO.class))
         );
     }
 }

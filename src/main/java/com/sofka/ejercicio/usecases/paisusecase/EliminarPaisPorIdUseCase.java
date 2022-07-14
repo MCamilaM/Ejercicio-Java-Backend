@@ -1,4 +1,4 @@
-package com.sofka.ejercicio.usecases;
+package com.sofka.ejercicio.usecases.paisusecase;
 
 import com.sofka.ejercicio.repositories.PaisRepository;
 import org.springframework.stereotype.Service;
