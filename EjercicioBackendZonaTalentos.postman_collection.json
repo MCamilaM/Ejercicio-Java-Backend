@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "56db7680-1f46-482a-a742-16e3d3986d54",
+		"name": "EjercicioBackendZonaTalentos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pais",
+			"item": [
+				{
+					"name": "ObtenerPaises",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerpaises",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerpaises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerPaisPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerpais/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerpais",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearPais",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Chile\",\r\n    \"codigo\": \"CL\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/crearpais",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"crearpais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarPais",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Brasil\",\r\n    \"codigo\": \"BR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actualizarpais/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actualizarpais",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarPais",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/eliminarpais/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"eliminarpais",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Equipo",
+			"item": [
+				{
+					"name": "obtenerEquipos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerequipos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerequipos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerEquipoPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerequipoid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerequipoid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerEquipoPorCodigo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerequipocodigo/RS1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerequipocodigo",
+								"RS1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearEquipo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"equipo3\",\r\n    \"codigo\": \"RQ3\",\r\n    \"pais\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"Colombia\",\r\n        \"codigo\": \"CO\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/crearequipo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"crearequipo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarEquipo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\": \"equipo actualizado\",\r\n    \"codigo\": \"RT1\",\r\n    \"pais\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"Brasil\",\r\n        \"codigo\": \"BR\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actualizarequipo/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actualizarequipo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarEquipo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/eliminarequipo/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"eliminarequipo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ciclista",
+			"item": [
+				{
+					"name": "obtenerCiclistas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerciclistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerciclistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerCiclistaPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerciclistaid/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerciclistaid",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerCiclistaPorNumeroCompetidor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerciclistanumcompetidor/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerciclistanumcompetidor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerCiclistasPorIdEquipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerciclistasidequipo/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerciclistasidequipo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerCiclistasPorIdPais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerciclistasidpais/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerciclistasidpais",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerCiclistasPorIdPaisYIdEquipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/obtenerciclistasidpais/2/idequipo/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"obtenerciclistasidpais",
+								"2",
+								"idequipo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearCiclista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jorge Perez Morales\",\r\n    \"numeroCompetidor\": 4,\r\n    \"idEquipo\": 3,\r\n    \"idPais\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/crearciclista",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"crearciclista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarCiclista",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5,\r\n    \"nombre\": \"Sebastian Martinez Torres\",\r\n    \"numeroCompetidor\": 999,\r\n    \"idEquipo\": 1,\r\n    \"idPais\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actualizarciclista/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actualizarciclista",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarCiclista",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/eliminarciclista/991",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"eliminarciclista",
+								"991"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
