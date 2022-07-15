@@ -23,7 +23,6 @@ public class Pais {
     @Id
     private Integer id;
     private String nombre;
-    @Indexed(unique = true)
     private String codigo;
 
 }
