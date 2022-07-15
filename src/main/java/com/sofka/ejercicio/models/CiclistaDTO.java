@@ -3,6 +3,7 @@ package com.sofka.ejercicio.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ public class CiclistaDTO {
     private String nombre;
 
     @NotNull
+    @Range(min = 0, max = 999, message = "el numero del competidor debe estar entre 0 y 999")
     private Integer numeroCompetidor;
     @NotNull
     private Integer idEquipo;

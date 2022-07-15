@@ -1,10 +1,7 @@
 package com.sofka.ejercicio.routers;
 
 import com.sofka.ejercicio.models.CiclistaDTO;
-import com.sofka.ejercicio.usecases.ciclistausecase.ActualizarCiclistaUseCase;
-import com.sofka.ejercicio.usecases.ciclistausecase.CrearCiclistaUseCase;
-import com.sofka.ejercicio.usecases.ciclistausecase.EliminarCiclistaPorIdUseCase;
-import com.sofka.ejercicio.usecases.ciclistausecase.ObtenerCiclistasUseCase;
+import com.sofka.ejercicio.usecases.ciclistausecase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -62,6 +59,54 @@ public class CiclistaRouter {
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(useCase.get(), CiclistaDTO.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> obtenerCiclistaPorId(ObtenerCiclistaPorIdUseCase useCase){
+        return route(GET("/obtenerciclistaid/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), CiclistaDTO.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> obtenerCiclistaPorNumeroCompetidor(ObtenerCiclistaPorNumeroCompetidorUseCase useCase){
+        return route(GET("/obtenerciclistanumcompetidor/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), CiclistaDTO.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> obtenerCiclistasPorIdEquipo(ObtenerCiclistasPorIdEquipoUseCase useCase){
+        return route(GET("/obtenerciclistasidequipo/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), CiclistaDTO.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> obtenerCiclistasPorIdPais(ObtenerCiclistasPorIdPaisUseCase useCase){
+        return route(GET("/obtenerciclistasidpais/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), CiclistaDTO.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> obtenerCiclistasPorIdPaisYIdEquipo(ObtenerCiclistasPorIdPaisYIdEquipoUseCase useCase){
+        return route(GET("/obtenerciclistasidpais/{idpais}/idequipo/{idequipo}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase
+                                .apply(request.pathVariable("idpais"),
+                                        request.pathVariable("idequipo")),
+                                CiclistaDTO.class))
         );
     }
 
