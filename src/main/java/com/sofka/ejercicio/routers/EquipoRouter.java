@@ -1,10 +1,7 @@
 package com.sofka.ejercicio.routers;
 
 import com.sofka.ejercicio.models.EquipoDTO;
-import com.sofka.ejercicio.usecases.equipousecase.ActualizarEquipoUseCase;
-import com.sofka.ejercicio.usecases.equipousecase.CrearEquipoUseCase;
-import com.sofka.ejercicio.usecases.equipousecase.EliminarEquipoPorIdUseCase;
-import com.sofka.ejercicio.usecases.equipousecase.ObtenerEquiposUseCase;
+import com.sofka.ejercicio.usecases.equipousecase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -63,6 +60,23 @@ public class EquipoRouter {
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(useCase.get(), EquipoDTO.class))
+        );
+    }
+    @Bean
+    public RouterFunction<ServerResponse> obtenerEquipoPorId(ObtenerEquipoPorIdUseCase useCase){
+        return route(GET("/obtenerequipoid/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), EquipoDTO.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> obtenerEquipoPorCodigo(ObtenerEquipoPorCodigoUseCase useCase){
+        return route(GET("/obtenerequipocodigo/{codigo}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("codigo")), EquipoDTO.class))
         );
     }
 }
