@@ -1,7 +1,11 @@
 package com.sofka.ejercicio.routers;
 
 import com.sofka.ejercicio.models.PaisDTO;
-import com.sofka.ejercicio.usecases.paisusecase.*;
+
+import com.sofka.ejercicio.usecases.paisusecase.ActualizarPaisUseCase;
+import com.sofka.ejercicio.usecases.paisusecase.CrearPaisUseCase;
+import com.sofka.ejercicio.usecases.paisusecase.EliminarPaisPorIdUseCase;
+import com.sofka.ejercicio.usecases.paisusecase.ObtenerPaisesUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
