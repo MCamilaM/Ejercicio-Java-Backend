@@ -1,6 +1,7 @@
 package com.sofka.ejercicio.routers;
 
 import com.sofka.ejercicio.models.PaisDTO;
+
 import com.sofka.ejercicio.usecases.paisusecase.ActualizarPaisUseCase;
 import com.sofka.ejercicio.usecases.paisusecase.CrearPaisUseCase;
 import com.sofka.ejercicio.usecases.paisusecase.EliminarPaisPorIdUseCase;
@@ -60,11 +61,19 @@ public class PaisRouter {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> ObtenerPaises(ObtenerPaisesUseCase useCase){
+    public RouterFunction<ServerResponse> obtenerPaises(ObtenerPaisesUseCase useCase){
         return route(GET("/obtenerpaises").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(useCase.get(), PaisDTO.class))
+        );
+    }
+    @Bean
+    public RouterFunction<ServerResponse> obtenerPaisPorId(ObtenerPaisPorIdUseCase useCase){
+        return route(GET("/obtenerpais/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(useCase.apply(request.pathVariable("id")), PaisDTO.class))
         );
     }
 }
