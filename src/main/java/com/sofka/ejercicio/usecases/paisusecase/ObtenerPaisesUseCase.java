@@ -1,4 +1,4 @@
-package com.sofka.ejercicio.usecases;
+package com.sofka.ejercicio.usecases.paisusecase;
 
 import com.sofka.ejercicio.mappers.MapperPais;
 import com.sofka.ejercicio.models.PaisDTO;
