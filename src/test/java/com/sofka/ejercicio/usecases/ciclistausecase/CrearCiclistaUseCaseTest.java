@@ -52,6 +52,10 @@ class CrearCiclistaUseCaseTest {
         StepVerifier.create(crearCiclistaUseCase.apply(ciclistaDTO))
                 .expectNextMatches(ciclistaDTO1 -> {
                     assertEquals(ciclistaDTO1.getId(),1);
+                    assertEquals(ciclistaDTO1.getNombre(),"Ramiro Fernandez Olaya");
+                    assertEquals(ciclistaDTO1.getNumeroCompetidor(), 45);
+                    assertEquals(ciclistaDTO1.getIdEquipo(), 1);
+                    assertEquals(ciclistaDTO1.getIdPais(),2);
                     return true;
                 }).verifyComplete();
 
