@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
@@ -21,6 +22,7 @@ public class Ciclista {
     @Id
     private Integer id;
     private String nombre;
+    @Indexed(unique = true)
     private Integer numeroCompetidor;
     private Integer idEquipo;
     private Integer idPais;

@@ -28,11 +28,23 @@ public class CrearCiclistaUseCase implements GuardarCiclista {
 
     @Override
     public Mono<CiclistaDTO> apply(CiclistaDTO ciclistaDTO) {
-        return service.getSequenceNumber(ID_SEQUENCE_CICLISTA).flatMap(id ->{
-            ciclistaDTO.setId(id.intValue());
-            return ciclistaRepository
-                    .save(mapperCiclista.ciclistaDTOACliciclista().apply(ciclistaDTO))
-                    .thenReturn(ciclistaDTO);
+
+        var numeroIntegrantesEquipo = ciclistaRepository.countByIdEquipo(ciclistaDTO.getIdEquipo());
+
+        return numeroIntegrantesEquipo.flatMap(cantidad -> {
+            if (cantidad < 8) {
+
+                return service.getSequenceNumber(ID_SEQUENCE_CICLISTA).flatMap(id -> {
+                    ciclistaDTO.setId(id.intValue());
+
+                    return ciclistaRepository
+                            .save(mapperCiclista.ciclistaDTOACliciclista().apply(ciclistaDTO))
+                            .thenReturn(ciclistaDTO);
+                });
+            }
+
+            return Mono.error(new Exception("El equipo ha alcanzo su maximo de integrantes (8)"));
+
         });
     }
 }
